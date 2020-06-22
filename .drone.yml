@@ -1,0 +1,31 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: generate-tags
+  image: quay.io/natlibfi/drone-gen-tags
+
+- name: docker
+  image: plugins/docker
+  settings:
+    registry: quay.io
+    repo: quay.io/natlibfi/drone-oss-cli
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+---
+kind: secret
+name: docker_username
+data: nmp8ita/x1+Xl8un/IZ+Rqb9dI+nI3RhYJaVd0szhi5H3TIiEtWKoZpxd5yXBFmTRIzoTGaY4VmtTg==
+---
+kind: secret
+name: docker_password
+data: QPQBK/UABureOOXsmd7udwl14/PL1puxMtzO40MPMsXIdYJ+lqB+tlOWGNCLsAzB1xQYGW+Bx/M9IOGY0rhkf+s1cn/o+ipBzw79oU/idflyHmvOxPpAbPpnL9A=
+---
+kind: signature
+hmac: 99ca79a0a3cd99c7c50afcafc64f827887d464e232dbf4d07e07a4c2d3d0cc62
+
+...
